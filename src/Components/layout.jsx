@@ -6,7 +6,7 @@ import {NavLink, Outlet} from "react-router-dom";
 const activeMenuClass = ({ isActive }) => isActive ? "active-menu" : "";
 
 const Layout = () => {
-  const {value} = useSelector(state => state.cart);
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
   return (
     <>
     <nav>
@@ -17,8 +17,8 @@ const Layout = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/"} className={activeMenuClass}>
-              Корзина {value}
+            <NavLink to={"/cart"} className={activeMenuClass}>
+              Корзина {cartTotalQuantity}
             </NavLink>
           </li>
         </ul> 

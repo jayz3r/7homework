@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from './ProductCard'
+import { fetchProducts } from '../store/ProductsSlice';
 
 export const Products = () => {
-  const {products}= useSelector(state => state.product)
-  console.log(products);
+  const dispatch = useDispatch();
+  useEffect(() =>{
+    dispatch(fetchProducts())
+  }, [dispatch])
+
+  const {products} = useSelector(state => state.products.products);
+  const loading = useSelector(state => state.products.loading);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div >
       {
